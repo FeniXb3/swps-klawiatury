@@ -11,28 +11,28 @@ while (true)
     {
         if (hero.x > 0)
         {
-            hero.x -= 1;
+            hero.x -= hero.speed;
         }
     }
     if (pressedKeyInfo.Key == ConsoleKey.D)
     {
         if (hero.x < Console.BufferWidth - 1)
         {
-            hero.x += 1;
+            hero.x += hero.speed;
         }
     }
     if (pressedKeyInfo.Key == ConsoleKey.W)
     {
         if (hero.y > 0)
         {
-            hero.y -= 1;
+            hero.y -= hero.speed;
         }
     }
     if (pressedKeyInfo.Key == ConsoleKey.S)
     {
         if (hero.y < Console.BufferHeight - 1)
         {
-            hero.y += 1;
+            hero.y += hero.speed;
         }
     }
 
