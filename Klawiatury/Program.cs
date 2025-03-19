@@ -12,32 +12,23 @@ while (true)
     Console.Write(" ");
     if (pressedKeyInfo.Key == ConsoleKey.A)
     {
-        if (hero.x > hero.speed)
-        {
-            hero.x -= hero.speed;
-        }
+        hero.x -= hero.speed;
     }
     if (pressedKeyInfo.Key == ConsoleKey.D)
     {
-        if (hero.x < Console.BufferWidth - 1 - hero.speed)
-        {
-            hero.x += hero.speed;
-        }
+        hero.x += hero.speed;
     }
     if (pressedKeyInfo.Key == ConsoleKey.W)
     {
-        if (hero.y > hero.speed)
-        {
-            hero.y -= hero.speed;
-        }
+        hero.y -= hero.speed;
     }
     if (pressedKeyInfo.Key == ConsoleKey.S)
     {
-        if (hero.y < Console.BufferHeight - 1 - hero.speed)
-        {
-            hero.y += hero.speed;
-        }
+        hero.y += hero.speed;
     }
+
+    hero.x = Math.Clamp(hero.x, 0, Console.BufferWidth - 1);
+    hero.y = Math.Clamp(hero.y, 0, Console.BufferHeight - 1);
 
     Console.SetCursorPosition(0, 0);
     Console.WriteLine($"({hero.x}, {hero.y})       ");
