@@ -1,4 +1,5 @@
-﻿Player hero = new Player("Snake");
+﻿Console.CursorVisible = false;
+Player hero = new Player("Snake");
 Console.WriteLine($"({hero.x}, {hero.y})");
 
 while (true)
