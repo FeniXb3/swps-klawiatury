@@ -17,32 +17,27 @@ while (true)
         case ConsoleKey.A:
             directionX = -hero.speed;
             directionY = -0;
-
-            hero.x += directionX;
-            hero.y += directionY;
             break;
         case ConsoleKey.D:
             directionX = hero.speed;
             directionY = 0;
-
-            hero.x += directionX;
-            hero.y += directionY;
             break;
         case ConsoleKey.W:
             directionX = -0;
             directionY = -hero.speed;
-
-            hero.x += directionX;
-            hero.y += directionY;
             break;
         case ConsoleKey.S:
             directionX = 0;
             directionY = hero.speed;
-
-            hero.x += directionX;
-            hero.y += directionY;
+            break;
+        default:
+            directionX = 0;
+            directionY = 0;
             break;
     }
+    
+    hero.x += directionX;
+    hero.y += directionY;
 
     hero.x = Math.Clamp(hero.x, 0, Console.BufferWidth - 1);
     hero.y = Math.Clamp(hero.y, 0, Console.BufferHeight - 1);
