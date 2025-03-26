@@ -10,21 +10,20 @@ while (true)
     ConsoleKeyInfo pressedKeyInfo = Console.ReadKey(true);
     Console.SetCursorPosition(hero.x, hero.y);
     Console.Write(" ");
-    if (pressedKeyInfo.Key == ConsoleKey.A)
+    switch (pressedKeyInfo.Key)
     {
-        hero.x -= hero.speed;
-    }
-    else if (pressedKeyInfo.Key == ConsoleKey.D)
-    {
-        hero.x += hero.speed;
-    }
-    else if (pressedKeyInfo.Key == ConsoleKey.W)
-    {
-        hero.y -= hero.speed;
-    }
-    else if (pressedKeyInfo.Key == ConsoleKey.S)
-    {
-        hero.y += hero.speed;
+        case ConsoleKey.A:
+            hero.x -= hero.speed;
+            break;
+        case ConsoleKey.D:
+            hero.x += hero.speed;
+            break;
+        case ConsoleKey.W:
+            hero.y -= hero.speed;
+            break;
+        case ConsoleKey.S:
+            hero.y += hero.speed;
+            break;
     }
 
     hero.x = Math.Clamp(hero.x, 0, Console.BufferWidth - 1);
