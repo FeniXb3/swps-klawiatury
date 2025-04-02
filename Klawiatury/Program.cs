@@ -14,6 +14,11 @@ directionsMap.Add(ConsoleKey.S, new Point(0, hero.speed));
 
 while (true)
 {
+    Console.SetCursorPosition(0, 0);
+    Console.WriteLine($"({hero.x}, {hero.y})       ");
+    Console.SetCursorPosition(hero.x, hero.y);
+    Console.Write("@");
+
     ConsoleKeyInfo pressedKeyInfo = Console.ReadKey(true);
     Console.SetCursorPosition(hero.x, hero.y);
     Console.Write(" ");
@@ -28,11 +33,6 @@ while (true)
         hero.x = Math.Clamp(hero.x, 0, Console.BufferWidth - 1);
         hero.y = Math.Clamp(hero.y, 0, Console.BufferHeight - 1);
     }
-    
-    Console.SetCursorPosition(0, 0);
-    Console.WriteLine($"({hero.x}, {hero.y})       ");
-    Console.SetCursorPosition(hero.x, hero.y);
-    Console.Write("@");
 }
 
 Console.WriteLine("Press Space to continue...");
