@@ -1,16 +1,15 @@
 ﻿Console.CursorVisible = false;
+Dictionary<ConsoleKey, Point> directionsMap = new Dictionary<ConsoleKey, Point>();
+directionsMap.Add(ConsoleKey.A, new Point(-1, 0));
+directionsMap.Add(ConsoleKey.D, new Point(1, 0));
+directionsMap.Add(ConsoleKey.W, new Point(0, -1));
+directionsMap.Add(ConsoleKey.S, new Point(0, 1 ));
+
 Player hero = new Player("Snake");
 hero.x = 1;
 hero.y = 2;
-hero.speed = 3;
+hero.speed = 1;
 Console.WriteLine($"({hero.x}, {hero.y})");
-
-
-Dictionary<ConsoleKey, Point> directionsMap = new Dictionary<ConsoleKey, Point>();
-directionsMap.Add(ConsoleKey.A, new Point(-hero.speed, -0));
-directionsMap.Add(ConsoleKey.D, new Point(hero.speed, 0));
-directionsMap.Add(ConsoleKey.W, new Point(-0, -hero.speed));
-directionsMap.Add(ConsoleKey.S, new Point(0, hero.speed));
 
 while (true)
 {
@@ -27,11 +26,13 @@ while (true)
     {
         Point direction = directionsMap[pressedKeyInfo.Key];
 
-        hero.x += direction.x;
-        hero.y += direction.y;
+        hero.x += direction.x * hero.speed;
+        hero.y += direction.y * hero.speed;
 
         hero.x = Math.Clamp(hero.x, 0, Console.BufferWidth - 1);
         hero.y = Math.Clamp(hero.y, 0, Console.BufferHeight - 1);
+
+        hero.speed += 1;
     }
 }
 
