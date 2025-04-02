@@ -5,9 +5,7 @@ directionsMap.Add(ConsoleKey.D, new Point(1, 0));
 directionsMap.Add(ConsoleKey.W, new Point(0, -1));
 directionsMap.Add(ConsoleKey.S, new Point(0, 1 ));
 
-Player hero = new Player("Snake");
-hero.position.x = 1;
-hero.position.y = 2;
+Player hero = new Player("Snake", new Point(1, 2));
 hero.speed = 1;
 Console.WriteLine($"({hero.position.x}, {hero.position.y})");
 
