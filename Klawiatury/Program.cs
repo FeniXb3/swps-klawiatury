@@ -12,8 +12,6 @@ hero.speed = 1;
 List<Player> clones = new List<Player>();
 clones.Add(hero);
 
-Console.WriteLine($"({hero.position.x}, {hero.position.y})");
-
 while (true)
 {
     foreach (Player element in clones)
