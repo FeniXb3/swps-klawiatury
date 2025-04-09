@@ -54,6 +54,13 @@ while (true)
 
         foreach (Player element in clones)
         {
+            int targetX = element.position.x + direction.x * element.speed;
+            int targetY = element.position.y + direction.y * element.speed;
+            if (level[targetY][targetX] == '#')
+            {
+                continue;
+            }
+
             element.position.x += direction.x * element.speed;
             element.position.y += direction.y * element.speed;
 
