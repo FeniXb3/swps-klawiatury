@@ -51,7 +51,7 @@ while (true)
         switch (pressedKeyInfo.Key)
         {
             case ConsoleKey.C:
-                Player clone = new Player(hero.name, "C", new Point(1, 2));
+                Player clone = new Player(hero.name, "C", startingPoint);
                 clones.Add(clone);
                 break;
         }
