@@ -12,14 +12,22 @@ hero.speed = 1;
 List<Player> clones = new List<Player>();
 clones.Add(hero);
 
+Console.WriteLine("#########################################");
+Console.WriteLine("#.......................................#");
+Console.WriteLine("#.......................................#");
+Console.WriteLine("#.......................................#");
+Console.WriteLine("#.......................................#");
+Console.WriteLine("#.......................................#");
+Console.WriteLine("#.......................................#");
+Console.WriteLine("#.......................................#");
+Console.WriteLine("#########################################");
+
 while (true)
 {
     foreach (Player element in clones)
     {
-        Console.SetCursorPosition(0, 0);
-        Console.WriteLine($"({element.position.x}, {element.position.y})       ");
         Console.SetCursorPosition(element.position.x, element.position.y);
-        Console.Write(element.avatar);  
+        Console.Write(element.avatar);
     }
  
     ConsoleKeyInfo pressedKeyInfo = Console.ReadKey(true);
@@ -41,7 +49,7 @@ while (true)
             element.position.x = Math.Clamp(element.position .x, 0, Console.BufferWidth - 1);
             element.position.y = Math.Clamp(element.position.y, 0, Console.BufferHeight - 1);
 
-            element.speed += 1;
+            // element.speed += 1;
         }
     }
     else
