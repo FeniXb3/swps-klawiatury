@@ -43,7 +43,9 @@ while (true)
     foreach (Player element in clones)
     {
         Console.SetCursorPosition(element.position.x, element.position.y);
-        Console.Write(" ");
+        string row = level[element.position.y];
+        char cellData = row[element.position.x];
+        Console.Write(cellData);
     }
 
     if (directionsMap.ContainsKey(pressedKeyInfo.Key))
