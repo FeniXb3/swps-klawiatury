@@ -88,12 +88,7 @@ while (true)
             
             element.position.x = targetX;
             element.position.y = targetY;
-
-            // HACK: First line changes y, second line changes x
-            // because limiting x depends on y.
-            element.position.y = Math.Clamp(element.position.y, 0, level.Length - 1);
-            element.position.x = Math.Clamp(element.position.x, 0, level[element.position.y].Length - 1);
-
+            
             element.speed += 1;
         }
     }
