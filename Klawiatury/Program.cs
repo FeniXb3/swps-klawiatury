@@ -5,7 +5,7 @@ directionsMap.Add(ConsoleKey.D, new Point(1, 0));
 directionsMap.Add(ConsoleKey.W, new Point(0, -1));
 directionsMap.Add(ConsoleKey.S, new Point(0, 1));
 
-Point startingPoint = new Point(1, 2);
+Point startingPoint = new Point(1, 0);
 
 Player hero = new Player("Snake", "@", startingPoint);
 hero.speed = 1;
@@ -14,8 +14,8 @@ clones.Add(hero);
 
 string[] level =
 [
-    "##############################################",
-    "##...........................................#",
+    "#.############################################",
+    "#............................................#",
     "#.......................................######",
     "#...................#...................###",
     "#.........................................#",
@@ -63,7 +63,7 @@ while (true)
             for (int i = 1; i <= Math.Abs(direction.y * element.speed); i++)
             {
                 int coordinateToTest = element.position.y + i * signY;
-                if (coordinateToTest >= level.Length || level[coordinateToTest][targetX] == '#')
+                if (coordinateToTest >= level.Length || coordinateToTest < 0|| level[coordinateToTest][targetX] == '#')
                 {
                     break;
                 }
@@ -76,7 +76,7 @@ while (true)
             for (int i = 1; i <= Math.Abs(direction.x * element.speed); i++)
             {
                 int coordinateToTest = element.position.x + i * signX;
-                if (coordinateToTest >= level[targetY].Length || level[targetY][coordinateToTest] == '#')
+                if (coordinateToTest >= level[targetY].Length || coordinateToTest < 0 || level[targetY][coordinateToTest] == '#')
                 {
                     break;
                 }
