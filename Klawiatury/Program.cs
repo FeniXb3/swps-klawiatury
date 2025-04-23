@@ -35,8 +35,7 @@ while (true)
 {
     foreach (Player element in clones)
     {
-        Console.SetCursorPosition(element.position.x, element.position.y);
-        Console.Write(element.avatar);
+        element.Display();
     }
  
     ConsoleKeyInfo pressedKeyInfo = Console.ReadKey(true);

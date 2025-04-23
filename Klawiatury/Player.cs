@@ -60,6 +60,15 @@ class Player
 
         return target;
     }
+
+    /// <summary>
+    /// Displays avatar on console.
+    /// </summary>
+    public void Display()
+    {
+        Console.SetCursorPosition(position.x, position.y);
+        Console.Write(avatar);
+    }
 }
 
 /*
