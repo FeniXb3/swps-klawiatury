@@ -21,8 +21,7 @@ class Player
 
     public void Move(Point direction, string[] level)
     {
-        int targetX = position.x;
-        int targetY = position.y;
+        Point target = position;
 
         int signY = Math.Sign(direction.y);
         int signX = Math.Sign(direction.x);
@@ -30,31 +29,30 @@ class Player
         for (int i = 1; i <= Math.Abs(direction.y * speed); i++)
         {
             int coordinateToTest = position.y + i * signY;
-            if (coordinateToTest >= level.Length || coordinateToTest < 0 || level[coordinateToTest][targetX] == '#')
+            if (coordinateToTest >= level.Length || coordinateToTest < 0 || level[coordinateToTest][target.x] == '#')
             {
                 break;
             }
             else
             {
-                targetY = coordinateToTest;
+                target.y = coordinateToTest;
             }
         }
 
         for (int i = 1; i <= Math.Abs(direction.x * speed); i++)
         {
             int coordinateToTest = position.x + i * signX;
-            if (coordinateToTest >= level[targetY].Length || coordinateToTest < 0 || level[targetY][coordinateToTest] == '#')
+            if (coordinateToTest >= level[target.y].Length || coordinateToTest < 0 || level[target.y][coordinateToTest] == '#')
             {
                 break;
             }
             else
             {
-                targetX = coordinateToTest;
+                target.x = coordinateToTest;
             }
         }
 
-        position.x = targetX;
-        position.y = targetY;
+        position = target;
 
         speed += 1;
     }
