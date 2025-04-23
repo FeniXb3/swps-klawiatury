@@ -1,9 +1,19 @@
 ﻿Console.CursorVisible = false;
-Dictionary<ConsoleKey, Point> directionsMap = new Dictionary<ConsoleKey, Point>();
-directionsMap.Add(ConsoleKey.A, new Point(-1, 0));
-directionsMap.Add(ConsoleKey.D, new Point(1, 0));
-directionsMap.Add(ConsoleKey.W, new Point(0, -1));
-directionsMap.Add(ConsoleKey.S, new Point(0, 1));
+
+Dictionary<ConsoleKey, string> keyActionMap = new Dictionary<ConsoleKey, string>();
+keyActionMap.Add(ConsoleKey.A, "moveLeft");
+keyActionMap.Add(ConsoleKey.D, "moveRight");
+keyActionMap.Add(ConsoleKey.W, "moveUp");
+keyActionMap.Add(ConsoleKey.S, "moveDown");
+keyActionMap.Add(ConsoleKey.C, "clone");
+keyActionMap.Add(ConsoleKey.Escape, "quitGame");
+
+
+Dictionary<string, Point> directionsMap = new Dictionary<string, Point>();
+directionsMap.Add("moveLeft", new Point(-1, 0));
+directionsMap.Add("moveRight", new Point(1, 0));
+directionsMap.Add("moveUp", new Point(0, -1));
+directionsMap.Add("moveDown", new Point(0, 1));
 
 Point startingPoint = new Point(1, 0);
 
@@ -41,14 +51,15 @@ while (isPlaying)
     }
 
     ConsoleKeyInfo pressedKeyInfo = Console.ReadKey(true);
+    string chosenAction = keyActionMap.GetValueOrDefault(pressedKeyInfo.Key, "none");
     foreach (Player element in clones)
     {
         RedrawCell(element.position, level);
     }
 
-    if (directionsMap.ContainsKey(pressedKeyInfo.Key))
+    if (directionsMap.ContainsKey(chosenAction))
     {
-        Point direction = directionsMap[pressedKeyInfo.Key];
+        Point direction = directionsMap[chosenAction];
 
         foreach (Player element in clones)
         {
@@ -57,13 +68,13 @@ while (isPlaying)
     }
     else
     {
-        switch (pressedKeyInfo.Key)
+        switch (chosenAction)
         {
-            case ConsoleKey.C:
+            case "clone":
                 Player clone = new Player(hero.name, "C", startingPoint);
                 clones.Add(clone);
                 break;
-            case ConsoleKey.Escape:
+            case "quitGame":
                 isPlaying = false;
                 break;
         }
