@@ -37,14 +37,11 @@ while (true)
     {
         element.Display();
     }
- 
+
     ConsoleKeyInfo pressedKeyInfo = Console.ReadKey(true);
     foreach (Player element in clones)
     {
-        Console.SetCursorPosition(element.position.x, element.position.y);
-        string row = level[element.position.y];
-        char cellData = row[element.position.x];
-        Console.Write(cellData);
+        RedrawCell(element.position, level);
     }
 
     if (directionsMap.ContainsKey(pressedKeyInfo.Key))
@@ -75,3 +72,11 @@ do
 {
     consoleKeyInfo = Console.ReadKey(true);
 } while (consoleKeyInfo.Key != ConsoleKey.Spacebar);
+
+void RedrawCell(Point position, string[] level)
+{
+    Console.SetCursorPosition(position.x, position.y);
+    string row = level[position.y];
+    char cellData = row[position.x];
+    Console.Write(cellData);
+}
