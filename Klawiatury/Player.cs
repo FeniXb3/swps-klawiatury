@@ -21,6 +21,12 @@ class Player
 
     public void Move(Point direction, string[] level)
     {
+        position = CalculateTargetPosition(direction, level);
+        speed += 1;
+    }
+
+    private Point CalculateTargetPosition(Point direction, string[] level)
+    {
         Point target = position;
 
         int signY = Math.Sign(direction.y);
@@ -52,9 +58,7 @@ class Player
             }
         }
 
-        position = target;
-
-        speed += 1;
+        return target;
     }
 }
 
