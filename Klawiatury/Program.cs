@@ -70,6 +70,7 @@ while (isPlaying)
     }
 }
 
+Console.SetCursorPosition(0, level.Length);
 Console.WriteLine("Press Space to continue...");
 ConsoleKeyInfo consoleKeyInfo;
 
