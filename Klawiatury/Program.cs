@@ -22,6 +22,8 @@ hero.speed = 1;
 List<Player> clones = new List<Player>();
 clones.Add(hero);
 
+NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L", new Point(25, 8));
+
 string[] level =
 [
     "#.############################################",
@@ -49,6 +51,7 @@ while (isPlaying)
     {
         element.Display();
     }
+    npc.Display();
 
     string chosenAction = hero.ChooseAction(keyActionMap);
     foreach (Player element in clones)
@@ -78,6 +81,12 @@ while (isPlaying)
                 break;
         }
     }
+
+    string npcAction = npc.ChooseAction(keyActionMap);
+    RedrawCell(npc.position, level);
+    Point npcDirection = directionsMap[npcAction];
+    npc.Move(npcDirection, level);
+
 }
 
 Console.SetCursorPosition(0, level.Length);
