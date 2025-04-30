@@ -17,7 +17,7 @@ directionsMap.Add("moveDown", new Point(0, 1));
 
 Point startingPoint = new Point(1, 0);
 
-Player hero = new Player("Snake", "@", startingPoint);
+Player hero = new Player("Snake", "@", startingPoint, keyActionMap);
 hero.speed = 1;
 List<Player> clones = new List<Player>();
 clones.Add(hero);
@@ -53,7 +53,7 @@ while (isPlaying)
     }
     npc.Display();
 
-    string chosenAction = hero.ChooseAction(keyActionMap);
+    string chosenAction = hero.ChooseAction();
     foreach (Player element in clones)
     {
         RedrawCell(element.position, level);
@@ -73,7 +73,7 @@ while (isPlaying)
         switch (chosenAction)
         {
             case "clone":
-                Player clone = new Player(hero.name, "C", startingPoint);
+                Player clone = new Player(hero.name, "C", startingPoint, keyActionMap);
                 clones.Add(clone);
                 break;
             case "quitGame":
@@ -82,7 +82,7 @@ while (isPlaying)
         }
     }
 
-    string npcAction = npc.ChooseAction(keyActionMap);
+    string npcAction = npc.ChooseAction();
     RedrawCell(npc.position, level);
     Point npcDirection = directionsMap[npcAction];
     npc.Move(npcDirection, level);

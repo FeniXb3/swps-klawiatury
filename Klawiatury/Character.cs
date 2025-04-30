@@ -19,7 +19,7 @@ abstract class Character
         this.position = position;
     }
 
-    public abstract string ChooseAction(Dictionary<ConsoleKey, string> keyActionMap);
+    public abstract string ChooseAction();
 
     public void Move(Point direction, string[] level)
     {

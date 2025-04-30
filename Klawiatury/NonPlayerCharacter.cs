@@ -9,7 +9,7 @@ class NonPlayerCharacter : Character
     {
     }
 
-    public override string ChooseAction(Dictionary<ConsoleKey, string> keyActionMap)
+    public override string ChooseAction()
     {
         return "moveLeft";
     }
