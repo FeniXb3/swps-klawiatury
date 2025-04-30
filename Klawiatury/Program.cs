@@ -50,8 +50,7 @@ while (isPlaying)
         element.Display();
     }
 
-    ConsoleKeyInfo pressedKeyInfo = Console.ReadKey(true);
-    string chosenAction = keyActionMap.GetValueOrDefault(pressedKeyInfo.Key, "none");
+    string chosenAction = hero.ChooseAction(keyActionMap);
     foreach (Player element in clones)
     {
         RedrawCell(element.position, level);

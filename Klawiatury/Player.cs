@@ -19,6 +19,14 @@ class Player
         this.position = position;
     }
 
+    public string ChooseAction(Dictionary<ConsoleKey, string> keyActionMap)
+    {
+        ConsoleKeyInfo pressedKeyInfo = Console.ReadKey(true);
+        string chosenAction = keyActionMap.GetValueOrDefault(pressedKeyInfo.Key, "none");
+
+        return chosenAction;
+    }
+
     public void Move(Point direction, string[] level)
     {
         position = CalculateTargetPosition(direction, level);
