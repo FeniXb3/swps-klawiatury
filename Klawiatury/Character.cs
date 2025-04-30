@@ -21,10 +21,9 @@ abstract class Character
 
     public abstract string ChooseAction();
 
-    public void Move(Point direction, string[] level)
+    public virtual void Move(Point direction, string[] level)
     {
         position = CalculateTargetPosition(direction, level);
-        speed += 1;
     }
 
     private Point CalculateTargetPosition(Point direction, string[] level)
