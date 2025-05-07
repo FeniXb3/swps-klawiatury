@@ -17,17 +17,18 @@ directionsMap.Add("moveDown", new Point(0, 1));
 
 Point startingPoint = new Point(1, 0);
 
+List<Character> characters = new List<Character>();
+
 Player hero = new Player("Snake", "@", startingPoint, keyActionMap);
 hero.speed = 1;
-List<Player> clones = new List<Player>();
-clones.Add(hero);
+characters.Add(hero);
 
-List<NonPlayerCharacter> npcs = new List<NonPlayerCharacter>();
 for (int i = 0; i < 10; i++)
 {
     NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L", new Point(25-i, 8));
-    npcs.Add(npc);
+    characters.Add(npc);
 }
+
 
 string[] level =
 [
@@ -50,53 +51,43 @@ foreach (string row in level)
 
 bool isPlaying = true;
 
+foreach (Character element in characters)
+{
+    element.Display();
+}
+
 while (isPlaying)
 {
-    foreach (Player element in clones)
+    // We're saving last characters count before the loop
+    // so that the new clone will not perform it's action
+    // untill next turn.
+    int charactersCount = characters.Count;
+    for (int i = 0; i < charactersCount; i++)
     {
-        element.Display();
-    }
+        Character element = characters[i];
 
-    foreach(NonPlayerCharacter npc in npcs)
-    {
-        npc.Display();
-    }
-
-    string chosenAction = hero.ChooseAction();
-    foreach (Player element in clones)
-    {
-        RedrawCell(element.position, level);
-    }
-
-    if (directionsMap.ContainsKey(chosenAction))
-    {
-        Point direction = directionsMap[chosenAction];
-
-        foreach (Player element in clones)
+        string chosenAction = element.ChooseAction();
+        if (directionsMap.ContainsKey(chosenAction))
         {
+            RedrawCell(element.position, level);
+            Point direction = directionsMap[chosenAction];
             element.Move(direction, level);
+            element.Display();
         }
-    }
-    else
-    {
-        switch (chosenAction)
+        else
         {
-            case "clone":
-                Player clone = new Player(hero.name, "C", startingPoint, keyActionMap);
-                clones.Add(clone);
-                break;
-            case "quitGame":
-                isPlaying = false;
-                break;
+            switch (chosenAction)
+            {
+                case "clone":
+                    PlayerClone clone = new PlayerClone(hero.name, "C", startingPoint, keyActionMap, hero);
+                    characters.Add(clone);
+                    clone.Display();
+                    break;
+                case "quitGame":
+                    isPlaying = false;
+                    break;
+            }
         }
-    }
-
-    foreach (NonPlayerCharacter npc in npcs)
-    {
-        string npcAction = npc.ChooseAction();
-        RedrawCell(npc.position, level);
-        Point npcDirection = directionsMap[npcAction];
-        npc.Move(npcDirection, level);
     }
 }
 
