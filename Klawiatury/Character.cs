@@ -21,12 +21,12 @@ abstract class Character
 
     public abstract string ChooseAction();
 
-    public virtual void Move(Point direction, string[] level, List<Character> characters)
+    public virtual void Move(Point direction, Level level, List<Character> characters)
     {
         position = CalculateTargetPosition(direction, level, characters);
     }
 
-    private Point CalculateTargetPosition(Point direction, string[] level, List<Character> characters)
+    private Point CalculateTargetPosition(Point direction, Level level, List<Character> characters)
     {
         Point target = position;
 
@@ -46,7 +46,7 @@ abstract class Character
                 }
             }
 
-            if (coordinateToTest >= level.Length || coordinateToTest < 0 || level[coordinateToTest][target.x] == '#' || isThereAnyone)
+            if (coordinateToTest >= level.GetHeight() || coordinateToTest < 0 || level.GetCell(target.x, coordinateToTest) == '#' || isThereAnyone)
             {
                 break;
             }
@@ -70,7 +70,7 @@ abstract class Character
                 }
             }
 
-            if (coordinateToTest >= level[target.y].Length || coordinateToTest < 0 || level[target.y][coordinateToTest] == '#' || isThereAnyone)
+            if (coordinateToTest >= level.GetRowWidth(target.y) || coordinateToTest < 0 || level.GetCell(coordinateToTest, target.y) == '#' || isThereAnyone)
             {
                 break;
             }
