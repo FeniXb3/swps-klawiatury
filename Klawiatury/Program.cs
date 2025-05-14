@@ -71,7 +71,7 @@ while (isPlaying)
         {
             RedrawCell(element.position, level);
             Point direction = directionsMap[chosenAction];
-            element.Move(direction, level);
+            element.Move(direction, level, characters);
             element.Display();
         }
         else
