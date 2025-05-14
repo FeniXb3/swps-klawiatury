@@ -47,7 +47,6 @@ class Level
     
     public bool IsWalkable(int x, int y)
     {
-        return x >= 0 && x < GetRowWidth(y) && GetCell(x, y) != '#';
-        // return !(x < 0 || x >= GetRowWidth(y) || GetCell(x, y) == '#');
+        return y >= 0 && y < GetHeight() && x >= 0 && x < GetRowWidth(y) && GetCell(x, y) != '#';
     }
 }

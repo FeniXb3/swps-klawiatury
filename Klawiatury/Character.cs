@@ -46,7 +46,7 @@ abstract class Character
                 }
             }
 
-            if (coordinateToTest >= level.GetHeight() || coordinateToTest < 0 || level.GetCell(target.x, coordinateToTest) == '#' || isThereAnyone)
+            if (!level.IsWalkable(target.x, coordinateToTest) || isThereAnyone)
             {
                 break;
             }
