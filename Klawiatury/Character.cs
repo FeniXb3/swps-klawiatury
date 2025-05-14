@@ -70,7 +70,7 @@ abstract class Character
                 }
             }
 
-            if (coordinateToTest >= level.GetRowWidth(target.y) || coordinateToTest < 0 || level.GetCell(coordinateToTest, target.y) == '#' || isThereAnyone)
+            if (!level.IsWalkable(coordinateToTest, target.y) || isThereAnyone)
             {
                 break;
             }
