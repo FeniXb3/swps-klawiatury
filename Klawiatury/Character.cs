@@ -23,7 +23,9 @@ abstract class Character
 
     public virtual void Move(Point direction, Level level, List<Character> characters)
     {
+        level.LeaveCell(position);
         position = CalculateTargetPosition(direction, level, characters);
+        level.OccupyCell(position, this);
     }
 
     private Point CalculateTargetPosition(Point direction, Level level, List<Character> characters)
@@ -36,17 +38,8 @@ abstract class Character
         for (int i = 1; i <= Math.Abs(direction.y * speed); i++)
         {
             int coordinateToTest = position.y + i * signY;
-            bool isThereAnyone = false;
-            foreach(Character character in characters)
-            {
-                if (character.position.x == target.x && character.position.y == coordinateToTest)
-                {
-                    isThereAnyone = true;
-                    break;
-                }
-            }
 
-            if (!level.IsWalkable(target.x, coordinateToTest) || isThereAnyone)
+            if (!level.IsWalkable(target.x, coordinateToTest) || level.IsCellOccupied(target.x, coordinateToTest))
             {
                 break;
             }
@@ -60,17 +53,7 @@ abstract class Character
         {
             int coordinateToTest = position.x + i * signX;
 
-            bool isThereAnyone = false;
-            foreach(Character character in characters)
-            {
-                if (character.position.x == coordinateToTest && character.position.y == target.y)
-                {
-                    isThereAnyone = true;
-                    break;
-                }
-            }
-
-            if (!level.IsWalkable(coordinateToTest, target.y) || isThereAnyone)
+            if (!level.IsWalkable(coordinateToTest, target.y) || level.IsCellOccupied(coordinateToTest, target.y))
             {
                 break;
             }

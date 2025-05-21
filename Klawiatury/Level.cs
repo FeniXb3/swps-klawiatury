@@ -56,9 +56,9 @@ class Level
         return levelData.Length;
     }
 
-    public char GetCell(int x, int y)
+    public char GetCellVisuals(int x, int y)
     {
-        return levelData[y][x].visual;
+        return GetCell(x, y).visual;
     }
 
     public int GetRowWidth(int rowIndex)
@@ -68,6 +68,27 @@ class Level
     
     public bool IsWalkable(int x, int y)
     {
-        return y >= 0 && y < GetHeight() && x >= 0 && x < GetRowWidth(y) && GetCell(x, y) != '#';
+        return y >= 0 && y < GetHeight() && x >= 0 && x < GetRowWidth(y) && GetCellVisuals(x, y) != '#';
+    }
+
+    public Cell GetCell(int x, int y)
+    {
+        return levelData[y][x];
+    }
+
+    public void OccupyCell(Point position, Character character)
+    {
+        Cell cell = GetCell(position.x, position.y);
+        cell.occupant = character;
+    }
+
+    public bool IsCellOccupied(int x, int y)
+    {
+        return GetCell(x, y).occupant != null;
+    }
+
+    public void LeaveCell(Point position)
+    {
+        GetCell(position.x, position.y).occupant = null;
     }
 }
