@@ -84,16 +84,16 @@ class Level
     public void OccupyCell(Point position, Character character)
     {
         Cell cell = GetCell(position);
-        cell.occupant = character;
+        cell.Occupy(character);
     }
 
     public bool IsCellOccupied(int x, int y)
     {
-        return GetCell(x, y).occupant != null;
+        return GetCell(x, y).IsOccupied();
     }
 
     public void LeaveCell(Point position)
     {
-        GetCell(position).occupant = null;
+        GetCell(position).Leave();
     }
 }
