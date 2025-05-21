@@ -76,9 +76,14 @@ class Level
         return levelData[y][x];
     }
 
+    public Cell GetCell(Point coordinates)
+    {
+        return GetCell(coordinates.x, coordinates.y);
+    }
+
     public void OccupyCell(Point position, Character character)
     {
-        Cell cell = GetCell(position.x, position.y);
+        Cell cell = GetCell(position);
         cell.occupant = character;
     }
 
@@ -89,6 +94,6 @@ class Level
 
     public void LeaveCell(Point position)
     {
-        GetCell(position.x, position.y).occupant = null;
+        GetCell(position).occupant = null;
     }
 }
