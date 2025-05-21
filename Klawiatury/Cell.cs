@@ -1,3 +1,4 @@
+
 class Cell
 {
     public char visual;
@@ -16,6 +17,11 @@ class Cell
     public void Leave()
     {
         occupant = null;
+    }
+
+    public Character GetOccupant()
+    {
+        return occupant;
     }
 
     internal void Occupy(Character character)

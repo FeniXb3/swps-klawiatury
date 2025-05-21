@@ -5,6 +5,8 @@ abstract class Character
     public Point previousPosition;
     public int speed = 1;
     public string avatar;
+    public bool isAlive = true;
+    public Cell? cell;
 
     public Character(string name, string avatar, Point position)
     {
@@ -23,6 +25,7 @@ abstract class Character
         
         level.LeaveCell(previousPosition);
         level.OccupyCell(position, this);
+        cell = level.GetCell(position);
     }
 
     private Point CalculateTargetPosition(Point direction, Level level, List<Character> characters)
@@ -70,5 +73,12 @@ abstract class Character
     {
         Console.SetCursorPosition(position.x, position.y);
         Console.Write(avatar);
+    }
+
+    internal void Kill()
+    {
+        isAlive = false;
+        cell.Leave();
+        cell = null;
     }
 }
