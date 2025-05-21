@@ -3,10 +3,6 @@ class NonPlayerCharacter : Character
 {
     private string[] availableActions;
     
-    public NonPlayerCharacter(string name, string avatar) : base(name, avatar)
-    {
-    }
-
     public NonPlayerCharacter(string name, string avatar, Point position) : base(name, avatar, position)
     {
         availableActions = 

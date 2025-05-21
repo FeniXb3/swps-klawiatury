@@ -52,9 +52,10 @@ while (isPlaying)
         string chosenAction = element.ChooseAction();
         if (directionsMap.ContainsKey(chosenAction))
         {
-            firstLevel.RedrawCell(element.position);
             Point direction = directionsMap[chosenAction];
             element.Move(direction, firstLevel, characters);
+            
+            firstLevel.RedrawCell(element.previousPosition);
             element.Display();
         }
         else

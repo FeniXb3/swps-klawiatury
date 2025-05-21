@@ -2,29 +2,26 @@ abstract class Character
 {
     public string name;
     public Point position;
+    public Point previousPosition;
     public int speed = 1;
     public string avatar;
-
-    public Character(string name, string avatar)
-    {
-        this.name = name;
-        this.avatar = avatar;
-        position = new Point(0, 0);
-    }
 
     public Character(string name, string avatar, Point position)
     {
         this.name = name;
         this.avatar = avatar;
         this.position = position;
+        this.previousPosition = position;
     }
 
     public abstract string ChooseAction();
 
     public virtual void Move(Point direction, Level level, List<Character> characters)
     {
-        level.LeaveCell(position);
+        previousPosition = position;
         position = CalculateTargetPosition(direction, level, characters);
+        
+        level.LeaveCell(previousPosition);
         level.OccupyCell(position, this);
     }
 

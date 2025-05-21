@@ -3,9 +3,6 @@ class Player : Character
 {
     public string chosenAction;
     private Dictionary<ConsoleKey, string> keyBindings;
-    public Player(string name, string avatar) : base(name, avatar)
-    {
-    }
 
     public Player(string name, string avatar, Point position, Dictionary<ConsoleKey, string> keyActionMap) : base(name, avatar, position)
     {
