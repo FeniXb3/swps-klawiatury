@@ -79,12 +79,21 @@ while (isPlaying)
                     break;
                 case "attack":
                     Point rightN = new Point(element.position.x + 1, element.position.y);
-                    Cell rightCell = firstLevel.GetCell(rightN);
-                    if (rightCell.IsOccupied())
+                    try
                     {
-                        Character other = rightCell.GetOccupant();
-                        other.Kill();
+                        Cell rightCell = firstLevel.GetCell(rightN);
+                        if (rightCell.IsOccupied())
+                        {
+                            Character other = rightCell.GetOccupant();
+                            other.Kill();
+                        }
                     }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Console.SetCursorPosition(0, firstLevel.GetHeight());
+                        Console.WriteLine("Cell with such coordinates does not exsist!");
+                    }
+                    
                     break;
             }
         }
