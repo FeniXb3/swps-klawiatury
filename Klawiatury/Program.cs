@@ -88,10 +88,10 @@ while (isPlaying)
                             other.Kill();
                         }
                     }
-                    catch (IndexOutOfRangeException)
+                    catch (ArgumentOutOfRangeException ex)
                     {
                         Console.SetCursorPosition(0, firstLevel.GetHeight());
-                        Console.WriteLine("Cell with such coordinates does not exsist!");
+                        Console.WriteLine($"{ex.ParamName} has incorrect value: {ex.ActualValue}");
                     }
                     
                     break;

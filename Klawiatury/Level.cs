@@ -80,6 +80,18 @@ class Level
 
     public Cell GetCell(int x, int y)
     {
+        bool isYCorrect = y >= 0 && y < GetHeight();
+        if (!isYCorrect)
+        {
+            throw new ArgumentOutOfRangeException(nameof(y), y, "Invalid coordinates");
+        }
+
+        bool isXCorrect = x >= 0 && x < GetRowWidth(y);
+        if (!isXCorrect)
+        {
+            throw new ArgumentOutOfRangeException(nameof(x), x, "Invalid coordinates");
+        }
+
         return levelData[y][x];
     }
 
