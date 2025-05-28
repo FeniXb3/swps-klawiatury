@@ -11,6 +11,7 @@ class NonPlayerCharacter : Character
             "moveRight",
             "moveUp",
             "moveDown",
+            "attack",
         ];
     }
 

@@ -13,6 +13,7 @@ class PlayerClone : Player
             "moveDown",
             "moveLeft",
             "moveRight",
+            "attack",
         };
     }
 
