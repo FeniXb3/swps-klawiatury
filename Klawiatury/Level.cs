@@ -45,10 +45,17 @@ class Level
 
     public void RedrawCell(Point position)
     {
-        Console.SetCursorPosition(position.x, position.y);
-        Cell[] row = levelData[position.y];
-        char cellData = row[position.x].visual;
-        Console.Write(cellData);
+        Cell cell = GetCell(position);
+        if (cell.IsOccupied())
+        {
+            cell.GetOccupant().Display();
+        }
+        else
+        {
+            Console.SetCursorPosition(position.x, position.y);
+            char cellData = cell.visual;
+            Console.Write(cellData);
+        }
     }
 
     public int GetHeight()
