@@ -22,17 +22,17 @@ abstract class Character
 
     public abstract string ChooseAction();
 
-    public virtual void Move(Point direction, Level level, List<Character> characters)
+    public virtual void Move(Point direction)
     {
         previousPosition = position;
-        position = CalculateTargetPosition(direction, level, characters);
+        position = CalculateTargetPosition(direction);
         
         level.LeaveCell(previousPosition);
         level.OccupyCell(position, this);
         cell = level.GetCell(position);
     }
 
-    private Point CalculateTargetPosition(Point direction, Level level, List<Character> characters)
+    private Point CalculateTargetPosition(Point direction)
     {
         Point target = position;
 

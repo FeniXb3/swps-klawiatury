@@ -17,9 +17,9 @@ class Player : Character
         return chosenAction;
     }
 
-    public override void Move(Point direction, Level level, List<Character> characters)
+    public override void Move(Point direction)
     {
-        base.Move(direction, level, characters);
+        base.Move(direction);
         // speed += 1;
     }
 }

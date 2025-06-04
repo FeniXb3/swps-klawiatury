@@ -60,7 +60,7 @@ while (isPlaying)
         if (directionsMap.ContainsKey(chosenAction))
         {
             Point direction = directionsMap[chosenAction];
-            element.Move(direction, firstLevel, characters);
+            element.Move(direction);
 
             firstLevel.RedrawCell(element.previousPosition);
             element.Display();
@@ -110,7 +110,7 @@ while (isPlaying)
                             Console.WriteLine($"{ex.ParamName} has incorrect value: {ex.ActualValue}");
                         }
                     }
-                    
+
                     break;
             }
         }
