@@ -19,18 +19,18 @@ directionsMap.Add("moveDown", new Point(0, 1));
 Point startingPoint = new Point(1, 0);
 
 List<Character> characters = new List<Character>();
+Level firstLevel = new Level();
 
-Player hero = new Player("Snake", "@", startingPoint, keyActionMap);
+Player hero = new Player("Snake", "@", startingPoint, firstLevel, keyActionMap);
 hero.speed = 1;
 characters.Add(hero);
 
 for (int i = 0; i < 10; i++)
 {
-    NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L", new Point(25-i, 8));
+    NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L", new Point(25 - i, 8), firstLevel);
     characters.Add(npc);
 }
 
-Level firstLevel = new Level();
 firstLevel.Display();
 
 bool isPlaying = true;
@@ -61,7 +61,7 @@ while (isPlaying)
         {
             Point direction = directionsMap[chosenAction];
             element.Move(direction, firstLevel, characters);
-            
+
             firstLevel.RedrawCell(element.previousPosition);
             element.Display();
         }
@@ -70,7 +70,7 @@ while (isPlaying)
             switch (chosenAction)
             {
                 case "clone":
-                    PlayerClone clone = new PlayerClone(hero.name, "C", startingPoint, keyActionMap, hero);
+                    PlayerClone clone = new PlayerClone(hero.name, "C", startingPoint, firstLevel, keyActionMap, hero);
                     characters.Add(clone);
                     clone.Display();
                     break;
@@ -78,20 +78,37 @@ while (isPlaying)
                     isPlaying = false;
                     break;
                 case "attack":
-                    Point rightN = new Point(element.position.x + 1, element.position.y);
-                    try
+                    // Choosing attack target:
+                    // 1. Scan surroundings to get all occupied cells
+                    //  a. left/right/top/bottom
+                    //  b. a + diagonals
+                    // 2. Let character choose target
+                    // 3. Attack chosen target 
+                    List<Point> attackDirections = new List<Point>
                     {
-                        Cell rightCell = firstLevel.GetCell(rightN);
-                        if (rightCell.IsOccupied())
+                        new Point(-1, 0),
+                        new Point(1, 0),
+                        new Point(0, -1),
+                        new Point(0, 1),
+                    };
+
+                    foreach (Point direction in attackDirections)
+                    {
+                        Point coordinatesToCheck = new Point(element.position.x + direction.x, element.position.y + direction.y);
+                        try
                         {
-                            Character other = rightCell.GetOccupant();
-                            other.Kill();
+                            Cell cellToCheck = firstLevel.GetCell(coordinatesToCheck);
+                            if (cellToCheck.IsOccupied())
+                            {
+                                Character other = cellToCheck.GetOccupant();
+                                other.Kill();
+                            }
                         }
-                    }
-                    catch (ArgumentOutOfRangeException ex)
-                    {
-                        Console.SetCursorPosition(0, firstLevel.GetHeight());
-                        Console.WriteLine($"{ex.ParamName} has incorrect value: {ex.ActualValue}");
+                        catch (ArgumentOutOfRangeException ex)
+                        {
+                            Console.SetCursorPosition(0, firstLevel.GetHeight());
+                            Console.WriteLine($"{ex.ParamName} has incorrect value: {ex.ActualValue}");
+                        }
                     }
                     
                     break;

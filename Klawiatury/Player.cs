@@ -4,7 +4,7 @@ class Player : Character
     public string chosenAction;
     private Dictionary<ConsoleKey, string> keyBindings;
 
-    public Player(string name, string avatar, Point position, Dictionary<ConsoleKey, string> keyActionMap) : base(name, avatar, position)
+    public Player(string name, string avatar, Point position, Level level, Dictionary<ConsoleKey, string> keyActionMap) : base(name, avatar, position, level)
     {
         keyBindings = keyActionMap;
     }

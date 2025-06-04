@@ -4,7 +4,7 @@ class PlayerClone : Player
     Player prototype;
     List<string> allowedActions;
 
-    public PlayerClone(string name, string avatar, Point position, Dictionary<ConsoleKey, string> keyActionMap, Player prototype) : base(name, avatar, position, keyActionMap)
+    public PlayerClone(string name, string avatar, Point position, Level level, Dictionary<ConsoleKey, string> keyActionMap, Player prototype) : base(name, avatar, position, level, keyActionMap)
     {
         this.prototype = prototype;
         allowedActions = new List<string>

@@ -7,13 +7,17 @@ abstract class Character
     public string avatar;
     public bool isAlive = true;
     public Cell? cell;
+    private Level level;
 
-    public Character(string name, string avatar, Point position)
+    public Character(string name, string avatar, Point position, Level level)
     {
         this.name = name;
         this.avatar = avatar;
         this.position = position;
         this.previousPosition = position;
+        this.level = level;
+        this.level.OccupyCell(position, this);
+        this.cell = this.level.GetCell(position);
     }
 
     public abstract string ChooseAction();

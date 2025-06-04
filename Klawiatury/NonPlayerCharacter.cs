@@ -3,7 +3,7 @@ class NonPlayerCharacter : Character
 {
     private string[] availableActions;
     
-    public NonPlayerCharacter(string name, string avatar, Point position) : base(name, avatar, position)
+    public NonPlayerCharacter(string name, string avatar, Point position, Level level) : base(name, avatar, position, level)
     {
         availableActions = 
         [
