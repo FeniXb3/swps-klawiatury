@@ -78,39 +78,7 @@ while (isPlaying)
                     isPlaying = false;
                     break;
                 case "attack":
-                    // Choosing attack target:
-                    // 1. Scan surroundings to get all occupied cells
-                    //  a. left/right/top/bottom
-                    //  b. a + diagonals
-                    // 2. Let character choose target
-                    // 3. Attack chosen target 
-                    List<Point> attackDirections = new List<Point>
-                    {
-                        new Point(-1, 0),
-                        new Point(1, 0),
-                        new Point(0, -1),
-                        new Point(0, 1),
-                    };
-
-                    foreach (Point direction in attackDirections)
-                    {
-                        Point coordinatesToCheck = new Point(element.position.x + direction.x, element.position.y + direction.y);
-                        try
-                        {
-                            Cell cellToCheck = firstLevel.GetCell(coordinatesToCheck);
-                            if (cellToCheck.IsOccupied())
-                            {
-                                Character other = cellToCheck.GetOccupant();
-                                other.Kill();
-                            }
-                        }
-                        catch (ArgumentOutOfRangeException ex)
-                        {
-                            Console.SetCursorPosition(0, firstLevel.GetHeight());
-                            Console.WriteLine($"{ex.ParamName} has incorrect value: {ex.ActualValue}");
-                        }
-                    }
-
+                    element.Attack();
                     break;
             }
         }
