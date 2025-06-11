@@ -1,12 +1,14 @@
 
 class Cell
 {
-    public char visual;
+    public char Visual { get; }
+
     private Character? occupant;
+
 
     public Cell(char visual)
     {
-        this.visual = visual;
+        this.Visual = visual;
     }
 
     public bool IsOccupied()

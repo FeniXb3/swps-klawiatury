@@ -37,7 +37,7 @@ class Level
         {
             foreach (Cell cell in row)
             {
-                Console.Write(cell.visual);
+                Console.Write(cell.Visual);
             }
             Console.WriteLine();
         }
@@ -53,7 +53,7 @@ class Level
         else
         {
             Console.SetCursorPosition(position.x, position.y);
-            char cellData = cell.visual;
+            char cellData = cell.Visual;
             Console.Write(cellData);
         }
     }
@@ -65,7 +65,8 @@ class Level
 
     public char GetCellVisuals(int x, int y)
     {
-        return GetCell(x, y).visual;
+        Cell cell = GetCell(x, y);
+        return cell.Visual;
     }
 
     public int GetRowWidth(int rowIndex)
