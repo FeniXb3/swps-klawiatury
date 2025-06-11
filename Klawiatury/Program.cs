@@ -19,7 +19,7 @@ directionsMap.Add("moveDown", new Point(0, 1));
 Point startingPoint = new Point(1, 0);
 
 List<Character> characters = new List<Character>();
-Level firstLevel = new Level();
+Level firstLevel = new Level(@"C:\projekty\SWPS\Semestr 2\Dzienne 1\Klawiatury\Klawiatury\firstLevel.txt");
 
 Player hero = new Player("Snake", "@", startingPoint, firstLevel, keyActionMap);
 hero.speed = 1;
