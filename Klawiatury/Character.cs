@@ -110,8 +110,8 @@ abstract class Character
                 Cell cellToCheck = level.GetCell(coordinatesToCheck);
                 if (cellToCheck.IsOccupied())
                 {
-                    Character other = cellToCheck.GetOccupant();
-                    other.Kill();
+                    Character other = cellToCheck.Occupant!;
+                    other?.Kill();
                 }
             }
             catch (ArgumentOutOfRangeException ex)

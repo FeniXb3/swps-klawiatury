@@ -3,7 +3,7 @@ class Cell
 {
     public char Visual { get; }
 
-    private Character? occupant;
+    public Character? Occupant { get; private set; }
 
 
     public Cell(char visual)
@@ -13,21 +13,16 @@ class Cell
 
     public bool IsOccupied()
     {
-        return occupant != null;
+        return Occupant != null;
     }
 
     public void Leave()
     {
-        occupant = null;
-    }
-
-    public Character GetOccupant()
-    {
-        return occupant;
+        Occupant = null;
     }
 
     internal void Occupy(Character character)
     {
-        occupant = character;
+        Occupant = character;
     }
 }
