@@ -5,10 +5,13 @@ class Cell
 
     public Character? Occupant { get; private set; }
 
+    private Point position;
 
-    public Cell(char visual)
+
+    public Cell(char visual, int x, int y)
     {
         this.Visual = visual;
+        position = new Point(x, y);
     }
 
     public bool IsOccupied()
@@ -26,5 +29,19 @@ class Cell
         ArgumentNullException.ThrowIfNull(character);
 
         Occupant = character;
+    }
+
+    internal void Display()
+    {
+        if (IsOccupied())
+        {
+            Occupant?.Display();
+        }
+        else
+        {
+            Console.SetCursorPosition(position.x, position.y);
+            char cellData = Visual;
+            Console.Write(cellData);
+        }
     }
 }

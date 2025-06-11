@@ -35,11 +35,6 @@ firstLevel.Display();
 
 bool isPlaying = true;
 
-foreach (Character element in characters)
-{
-    element.Display();
-}
-
 while (isPlaying)
 {
     // We're saving last characters count before the loop
