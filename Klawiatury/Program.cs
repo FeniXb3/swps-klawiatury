@@ -20,18 +20,20 @@ Point startingPoint = new Point(1, 0);
 
 List<Character> characters = new List<Character>();
 Level firstLevel = new Level(@"C:\projekty\SWPS\Semestr 2\Dzienne 1\Klawiatury\Klawiatury\firstLevel.txt");
+Level secondLevel = new Level(@"C:\projekty\SWPS\Semestr 2\Dzienne 1\Klawiatury\Klawiatury\secondLevel.txt");
 
-Player hero = new Player("Snake", "@", startingPoint, firstLevel, keyActionMap);
+Level currentLevel = firstLevel;
+Player hero = new Player("Snake", "@", startingPoint, currentLevel, keyActionMap);
 hero.speed = 1;
 characters.Add(hero);
 
 for (int i = 0; i < 10; i++)
 {
-    NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L", new Point(25 - i, 8), firstLevel);
+    NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L", new Point(25 - i, 2), currentLevel);
     characters.Add(npc);
 }
 
-firstLevel.Display();
+currentLevel.Display();
 
 bool isPlaying = true;
 
@@ -47,7 +49,7 @@ while (isPlaying)
 
         if (!element.isAlive)
         {
-            firstLevel.RedrawCell(element.position);
+            currentLevel.RedrawCell(element.position);
             continue;
         }
 
@@ -57,7 +59,14 @@ while (isPlaying)
             Point direction = directionsMap[chosenAction];
             element.Move(direction);
 
-            firstLevel.RedrawCell(element.previousPosition);
+            if (currentLevel.GetCellVisuals(element.position.x, element.position.y) == '%')
+            {
+                currentLevel = secondLevel;
+                Console.Clear();
+                currentLevel.Display();
+            }
+
+            currentLevel.RedrawCell(element.previousPosition);
             element.Display();
         }
         else
@@ -65,7 +74,7 @@ while (isPlaying)
             switch (chosenAction)
             {
                 case "clone":
-                    PlayerClone clone = new PlayerClone(hero.name, "C", startingPoint, firstLevel, keyActionMap, hero);
+                    PlayerClone clone = new PlayerClone(hero.name, "C", startingPoint, currentLevel, keyActionMap, hero);
                     characters.Add(clone);
                     clone.Display();
                     break;
@@ -80,7 +89,7 @@ while (isPlaying)
     }
 }
 
-Console.SetCursorPosition(0, firstLevel.GetHeight());
+Console.SetCursorPosition(0, currentLevel.GetHeight());
 Console.WriteLine("Press Space to continue...");
 ConsoleKeyInfo consoleKeyInfo;
 
